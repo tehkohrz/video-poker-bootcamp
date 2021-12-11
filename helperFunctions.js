@@ -1,42 +1,3 @@
-//test vairables
-let testVariable = [
-  {
-    imageRef: "Spades 8",
-    name: "8",
-    rank: 8,
-    replaceToggle: false,
-    suit: "Spades",
-  },
-  {
-    imageRef: "Spades 8",
-    name: "2",
-    rank: 7,
-    replaceToggle: false,
-    suit: "Diamond",
-  },
-  {
-    imageRef: "Spades 8",
-    name: "King",
-    rank: 5,
-    replaceToggle: false,
-    suit: "Clubs",
-  },
-  {
-    imageRef: "Spades 8",
-    name: "4",
-    rank: 4,
-    replaceToggle: false,
-    suit: "Spades",
-  },
-  {
-    imageRef: "Spades 8",
-    name: "6",
-    rank: 6,
-    replaceToggle: false,
-    suit: "Hearts",
-  },
-];
-
 // Get a random index ranging from 0 (inclusive) to max (exclusive).
 const getRandomIndex = (max) => Math.floor(Math.random() * max);
 
@@ -67,7 +28,7 @@ export const shuffleCards = (cards) => {
   rank: rankCounter,
   color: suitColor,}
   @return array of card that comprises the deck
-*/
+  */
 export const makeDeck = () => {
   // Initialise an empty deck array
   const newDeck = [];
@@ -145,6 +106,7 @@ export const dealCards = (deck, hand, noOfCards = 0) => {
 //@param hand {array} containing the cards {onject}
 //@param attribute {string} the attribute within the card object that you want to tally like suit or cardname
 //@return tally{object} containing all the cards within hand and the count of cards
+//test vairables
 const tallyHand = (hand, attribute) => {
   let tally = {};
   for (let i = 0; i < hand.length; i += 1) {
@@ -158,47 +120,151 @@ const tallyHand = (hand, attribute) => {
   return tally;
 };
 
-//tally the names and suits to use as logic for win checks
-const tallyCombinations = (hand) => {
+//tally the rank and suits to use as logic for win checks\
+//Checking for the different combinations and resolving for the highest combination
+//@param hand {array} of cards {object} storing the properties of the cards
+//@return handCombos {oject} of the different conbinations of the hand such as pairs, triples, four of a kind, straights, flush and royal flush
+//return to be def into the player.combinations {object} for payout logic
+export const tallyCombinations = (hand) => {
   let handCombos = {};
   // tally for card ranks to check for straights
   let rankTally = tallyHand(hand, "rank");
   let rank = [];
-  for (let x in rankTally) {
+
+  for (let key in rankTally) {
     //object properties that are indices are sorted numerically
-    rank.push(x);
+    rank.push(key);
   }
-  rank = [3, 4, 5, 6, 7];
-  for (let i = 0; i < rank.length - 1; i += 0) {
-    if (rank[i + 1] - rank[i] == 1) {
-      handCombos.straights = true;
-      console.log("handcombo", handCombos.straights);
-    } else {
-      handCombos.straights = false;
+  //for ace is rank 1 in royal flush cant compare numerically (1,10,11,12,13,14) so count 4 straigtcounts, there are other ways to do this
+  //other combination to note is  1,2,3,4,5
+  if (rank[0] === "1") {
+    rank.push(14);
+  }
+  // Checking for pairs, triples and four of a kind
+  handCombos.straights = straightsCheck(rank);
+  //checking for other combinations
+  for (let key in rankTally) {
+    let value = rankTally[key];
+    if (value > 1) {
+      if (value === 2) {
+        handCombos.pair = true;
+      }
+      S;
+      if (value === 3) {
+        handCombos.triple = true;
+      }
+      s;
+      if (value === 4) {
+        handCombos.fourOfKind = true;
+      }
     }
   }
-  // console.log("straights", handCombos.straights);
-  // tally for card suits to use for flush
+  // tally for card suits to check for flush
   let suitTally = tallyHand(hand, "suit");
+  for (let key in suitTally) {
+    if (suitTally[key] == 5) {
+      handCombos.flush = true;
+    }
+  }
+  //check for royal flush 1) straights, 2)flush & starts at 10 to Ace but the first card in rank is ace (rank = 1)
+  //reset straight and flush checks incase if error pops in payout portion
+  if (handCombos.straights && handCombos.flush && rank[0] === "1") {
+    handCombos.royal = true;
+    handCombos.straights = false;
+    handCombos.flush = false;
+  }
+  if (handCombos.straights && handCombos.flush) {
+    handCombos.straights = false;
+    handCombos.flush = false;
+    handCombos.straightFlush = true;
+  }
+  //check for full house and eliminate the rest of the conditions
+  if (handCombos.pair && handCombos.triple) {
+    handCombos.fullHouse = true;
+    handCombos.pair = false;
+    handCombos.triple = false;
+  }
+  return handCombos;
 };
 
-//Runs through the tally object to look for pairs, triples and associated combinations
-const checkWinCombination = () => {
-  //count for pairs
-  //count for triples
-  //count for four of a kind
-  //pair and triple = full house
-  //double pair
-  //flush (same suit)
-  //straights consecutive number
-  //royal flush straight start 10 ends at Ace
-};
-
-function testingFunction() {
-  let testDeck = shuffleCards(makeDeck());
-  let testHand; // initHand(5);
-  testHand = dealCards(testDeck, testHand, 5);
-  dealCards(testDeck, testHand);
-  tallyCombinations(testVariable);
+//checking for straights
+//@param rank {array} array of the card ranks in {string}
+//@return true if the cards are straights
+function straightsCheck(rank) {
+  let straightCount = 0;
+  //count for 4 consecutive straights checks
+  for (let i = 0; i < rank.length - 1; i += 1) {
+    if (rank[i + 1] - rank[i] == 1) {
+      straightCount += 1;
+    }
+  }
+  if (straightCount === 4) {
+    return true;
+  }
 }
-testingFunction();
+
+//set the payout odds for payment of bet
+//pays ass long as you have pairs
+//@param combination{object} of combinations that the player hand has
+//@return payOutOdds {number} odds to be multipled with the bet amount
+
+export const checkPayOut = (handCombos) => {
+  let winningOdds = 0;
+  let payTable = {
+    royal: 800,
+    straightFlush: 50,
+    fourOfKind: 25,
+    fullHouse: 9,
+    flush: 6,
+    straights: 4,
+    triple: 3,
+    pair: 2,
+  };
+  for (let key in handCombos) {
+    if (handCombos[key]) {
+      winningOdds = payTable[key];
+    }
+  }
+  console.log("winningOdds", winningOdds);
+  return winningOdds;
+};
+/*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
+let testVariable = [
+  {
+    imageRef: "Spades 8",
+    name: "Ace",
+    rank: 1,
+    replaceToggle: false,
+    suit: "Spades",
+  },
+  {
+    imageRef: "Spades 8",
+    name: "10",
+    rank: 10,
+    replaceToggle: false,
+    suit: "Spades",
+  },
+  {
+    imageRef: "Spades 8",
+    name: "King",
+    rank: 13,
+    replaceToggle: false,
+    suit: "Spades",
+  },
+  {
+    imageRef: "Spades 8",
+    name: "Queen",
+    rank: 12,
+    replaceToggle: false,
+    suit: "Spades",
+  },
+  {
+    imageRef: "Spades 8",
+    name: "Jack",
+    rank: 11,
+    replaceToggle: false,
+    suit: "Spades",
+  },
+];
+/*@@@@@@@@@@@@@@@@@@@@@@@@@*/
+checkPayOut(tallyCombinations(testVariable));
