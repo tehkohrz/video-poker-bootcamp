@@ -228,6 +228,7 @@ export const checkPayOut = (handCombos) => {
   console.log("winningOdds", winningOdds);
   return winningOdds;
 };
+
 /*@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
 let testVariable = [
   {
