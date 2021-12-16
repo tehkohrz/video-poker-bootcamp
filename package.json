@@ -2,10 +2,12 @@
   "name": "video-poker-swe1",
   "version": "1.0.0",
   "description": "SWE1 Video Poker",
-  "main": "gameIncantation.js",
+  "source": "gameSite.html",
   "scripts": {
     "start": "parcel",
-    "build": "parcel build"
+    "build": "parcel build",
+    "lint": "eslint *.js",
+    "lint:fix": "npm run lint -- --fix"
   },
   "repository": {
     "type": "git",

@@ -1,0 +1,9 @@
+.title{
+    background-color: cornflowerblue;
+    align-content: center;
+    box-sizing: border-box;
+}
+.row {
+    display: flexbox;
+    background-color: aquamarine;
+}
