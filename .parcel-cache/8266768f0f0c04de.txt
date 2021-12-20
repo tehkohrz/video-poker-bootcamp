@@ -1,8 +1,8 @@
-18592
+18593
 126C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\node_modules\whatwg-url\lib\url-state-machine.js132839413461805158 0
 112C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\node_modules\ajv\lib\dot\const.jst132839413522546970 0
 157C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\node_modules\postcss-modules-values\node_modules\source-map\lib\mapping-list.js132839413478261356 0
-96C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\gameIncantation.js132841215441833239 0
+96C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\gameIncantation.js132844827671610991 0
 122C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\node_modules\es-abstract\2016\SecFromTime.js132839413558368167 0
 139C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\node_modules\resolve\test\resolver\browser_field\package.json132839413525280961 0
 117C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\node_modules\lodash\_createCaseFirst.js132839413529310488 0
@@ -87,7 +87,7 @@
 127C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\node_modules\@swc\helpers\lib\_define_property.js132839413508291705 0
 147C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\node_modules\jsdom\lib\jsdom\living\nodes\HTMLTextAreaElement-impl.js132839413544788270 0
 105C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\node_modules\svgo\README.md132839413524295378 0
-91C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\gameSite.html132841215421400994 0
+91C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\gameSite.html132844778685063044 0
 109C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\node_modules\htmlnano\README.md132839413518984937 0
 104C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\node_modules\serve-handler132839413471839728 1
 114C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\node_modules\public-encrypt\index.js132839413455100022 0
@@ -107,7 +107,7 @@
 120C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\node_modules\svgo\plugins\removeViewBox.js132839413519535319 0
 131C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\node_modules\core-js\features\string\virtual\small.js132839413584712237 0
 115C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\node_modules\abortcontroller-polyfill132839413492816534 1
-82C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\dist132841215182797688 1
+82C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\dist132844833541671656 1
 134C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\node_modules\object.entries\.github\workflows\rebase.yml132839413500409903 0
 145C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\node_modules\@parcel\optimizer-terser\node_modules\terser\README.md132839413519483711 0
 121C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\node_modules\semver\internal\identifiers.js132839413499070380 0
@@ -167,7 +167,7 @@
 105C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\node_modules\pn\.travis.yml132839413455152535 0
 113C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\node_modules\@parcel\runtime-js\src132839413510634109 1
 121C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\node_modules\@parcel\workers\src\backend.js132839413453105803 0
-98C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\stylesScriptures.css132841215385719126 0
+98C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\stylesScriptures.css132844778685153833 0
 128C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\node_modules\stylehacks\dist\dictionary\postcss.js132839413498329509 0
 147C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\node_modules\jsdom\lib\jsdom\living\generated\EventListenerOptions.js132839413526067010 0
 113C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\node_modules\@parcel\transformer-js132839413566465028 1
@@ -187,7 +187,7 @@
 131C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\node_modules\utility-types\dist\aliases-and-guards.js132839413447583239 0
 115C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\node_modules\caniuse-api\CHANGELOG.md132839413446672643 0
 109C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\node_modules\object.assign\dist132839413470607968 1
-92C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\summoningUI.js132841215467875658 0
+92C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\summoningUI.js132844833539501372 0
 120C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\node_modules\source-map-support\LICENSE.md132839413470584546 0
 103C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\node_modules\wcwidth\test132839413474517862 1
 100C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\node_modules\lodash\fp132839413567374201 1
@@ -13110,7 +13110,7 @@
 134C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\node_modules\css-tree\lib\syntax\node\DeclarationList.js132839413515179939 0
 138C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\node_modules\eslint\lib\rules\space-before-function-paren.js132839413544517960 0
 131C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\node_modules\core-js\features\reflect\get-metadata.js132839413563070382 0
-96C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\dist\gameSite.html132841211232595834 0
+96C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\dist\gameSite.html132844832570793679 0
 126C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\node_modules\eslint\lib\rules\space-infix-ops.js132839413544603227 0
 126C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\node_modules\eslint\lib\rules\space-unary-ops.js132839413544682302 0
 138C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\node_modules\@parcel\transformer-json\node_modules\json5\lib132839413506045071 1
@@ -14446,7 +14446,7 @@
 134C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\node_modules\diffie-hellman\node_modules\bn.js\README.md132839413467807589 0
 122C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\node_modules\caniuse-lite\data\regions\GN.js132839413542771343 0
 121C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\node_modules\detect-libc\bin\detect-libc.js132839413465516948 0
-104C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\dist\gameSite.1d91873b.css132841215182607757 0
+104C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\dist\gameSite.1d91873b.css132844832569756491 0
 105C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\node_modules\des.js\.jscsrc132839413442821013 0
 111C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\node_modules\@types\node\net.d.ts132839413515425229 0
 107C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\node_modules\des.js\.jshintrc132839413446610906 0
@@ -18487,9 +18487,9 @@
 101C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\node_modules\.bin\uncss132839413598188619 0
 105C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\node_modules\.bin\uncss.cmd132839413598188619 0
 100C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\node_modules\.bin\uuid132839413598178647 0
-108C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\dist\gameSite.1d91873b.css.map132841215182739984 0
-103C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\dist\gameSite.43aee3ba.js132841211236438034 0
-107C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\dist\gameSite.43aee3ba.js.map132841211236547741 0
+108C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\dist\gameSite.1d91873b.css.map132844832569892671 0
+103C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\dist\gameSite.43aee3ba.js132844833541563285 0
+107C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\dist\gameSite.43aee3ba.js.map132844833541631338 0
 104C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\dist\gameSite.a4e33057.css132841207565754945 0
 108C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\dist\gameSite.a4e33057.css.map132841207566758594 0
 108C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\dist\gameSite.bb18a9bf.css.map132839415925334855 0
@@ -18497,7 +18497,7 @@
 99C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\assets\Cards Pack\PNG132836203979829410 1
 107C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\assets\Cards Pack\Preview.png132836203981561432 0
 112C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\assets\Cards Pack\Vector\Cards.svg132836203982072766 0
-106C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\assets\Cards Pack\PNG\Medium132836203979795418 1
+106C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\assets\Cards Pack\PNG\Medium132844778684983049 1
 121C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\assets\Cards Pack\PNG\Small\Back Blue 1.png132836203979854883 0
 117C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\assets\Cards Pack\PNG\Small\Clubs 1.png132836203980040100 0
 118C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\assets\Cards Pack\PNG\Small\Clubs 10.png132836203980066931 0
@@ -18552,6 +18552,7 @@
 119C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\assets\Cards Pack\PNG\Medium\Hearts 8.png132836203979401492 0
 119C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\assets\Cards Pack\PNG\Medium\Hearts 9.png132836203979429423 0
 122C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\assets\Cards Pack\PNG\Medium\Joker Black.png132836203979462833 0
+128C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\assets\Cards Pack\PNG\Medium\Medium - Shortcut.lnk132844778684983049 0
 120C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\assets\Cards Pack\PNG\Medium\Spades 12.png132836203979584373 0
 120C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\assets\Cards Pack\PNG\Medium\Spades 13.png132836203979605423 0
 119C:\Users\dongk\OneDrive\Desktop\TempWorkFiles\videoPoker\video-poker-bootcamp\assets\Cards Pack\PNG\Medium\Spades 2.png132836203979636736 0

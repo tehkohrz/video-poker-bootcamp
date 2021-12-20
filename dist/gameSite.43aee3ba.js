@@ -459,7 +459,18 @@ function hmrAcceptRun(bundle, id) {
 }
 
 },{}],"3gkOT":[function(require,module,exports) {
-var _helperFunctions = require("./helperFunctions");
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "handSize", ()=>handSize
+);
+parcelHelpers.export(exports, "gameState", ()=>gameState
+);
+parcelHelpers.export(exports, "playerData", ()=>playerData
+);
+parcelHelpers.export(exports, "updateGameState", ()=>updateGameState
+);
+var _helperFunctionsJs = require("./helperFunctions.js");
+var _summoningUIJs = require("./summoningUI.js");
 let gameDeck = [];
 const handSize = 5;
 let gameState;
@@ -468,8 +479,46 @@ const playerData = {
     currentBet: 0,
     bank: '100',
     hand: undefined,
+    // [
+    // {
+    //   imageRef: 'Spades 8',
+    //   name: 'Ace',
+    //   rank: 1,
+    //   replaceToggle: false,
+    //   suit: 'Spades',
+    // },
+    // {
+    //   imageRef: 'Spades 8',
+    //   name: '10',
+    //   rank: 10,
+    //   replaceToggle: false,
+    //   suit: 'Spades',
+    // },
+    // {
+    //   imageRef: 'Spades 8',
+    //   name: 'King',
+    //   rank: 13,
+    //   replaceToggle: false,
+    //   suit: 'Spades',
+    // },
+    // {
+    //   imageRef: 'Spades 8',
+    //   name: 'Queen',
+    //   rank: 12,
+    //   replaceToggle: false,
+    //   suit: 'Spades',
+    // },
+    // {
+    //   imageRef: 'Spades 8',
+    //   name: 'Jack',
+    //   rank: 11,
+    //   replaceToggle: false,
+    //   suit: 'Spades',
+    // },
+    // ],
     handCombos: {
-    }
+    },
+    revealCount: 0
 };
 const betPhase = 'betPhase';
 const dealPhase = 'dealPhase';
@@ -478,25 +527,34 @@ const payOutPhase = 'payOutPhase';
 const initGame = ()=>{
     gameState = betPhase;
     // create game deck and shuffle cards
-    gameDeck = _helperFunctions.shuffleCards(_helperFunctions.makeDeck());
-// generates the UI for game
+    gameDeck = _helperFunctionsJs.shuffleCards(_helperFunctionsJs.makeDeck());
+    // generates the UI for game
+    _summoningUIJs.gameStartUI();
+    _summoningUIJs.gameBoard(handSize, true);
 };
 initGame();
-// To manage the different stages of the game and implement logic and site display
-const gameStageManager = ()=>{
-    if (gameState == betPhase) gameState = dealPhase;
-    if (gameState == dealPhase) {
-        _helperFunctions.dealCards(gameDeck, playerData.hand, handSize);
+const updateGameState = ()=>{
+    if (gameState === betPhase) {
+        document.getElementById('gameToolTip').innerText = 'Cards have been dealt best of luck';
+        _helperFunctionsJs.dealCards(gameDeck, playerData.hand, handSize);
+        // remove the board so tha can update but there has to be a better way
+        _summoningUIJs.gameBoard(handSize, true);
+        document.body.removeChild(document.querySelector('.board'));
+        document.getElementById('actionButton').innerText = 'Show hand';
+        gameState = dealPhase;
+    }
+    if (gameState === dealPhase) {
+        _helperFunctionsJs.dealCards(gameDeck, playerData.hand, handSize);
         // insert logic for the the card display function
         gameState = replaceCardsPhase;
     }
-    if (gameState == replaceCardsPhase) {
-        _helperFunctions.dealCards(gameDeck, playerData.hand);
+    if (gameState === replaceCardsPhase) {
+        _helperFunctionsJs.dealCards(gameDeck, playerData.hand);
         gameState = payOutPhase;
     }
 };
 
-},{"./helperFunctions":"bDY69"}],"bDY69":[function(require,module,exports) {
+},{"./helperFunctions.js":"bDY69","./summoningUI.js":"bMnEE","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"bDY69":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "shuffleCards", ()=>shuffleCards
@@ -736,6 +794,139 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}]},["2S9hd","3gkOT"], "3gkOT", "parcelRequire2c8c")
+},{}],"bMnEE":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "gameStartUI", ()=>gameStartUI
+);
+// Function starts the Gameboard for the card
+// creating the card elements for the images to be fed into
+// @param handSize {number} number of cards to be dealt
+parcelHelpers.export(exports, "gameBoard", ()=>gameBoard
+);
+var _gameIncantationJs = require("./gameIncantation.js");
+const gameStartUI = ()=>{
+    // title of the gameSite
+    const gameTitleContainer = document.createElement('div');
+    gameTitleContainer.classList.add('title');
+    gameTitleContainer.innerText = '♠️ Video Poker ♠️';
+    document.body.appendChild(gameTitleContainer);
+    // Main Game information Container
+    const gameInfoContainer = document.createElement('div');
+    gameInfoContainer.classList.add('row');
+    document.body.appendChild(gameInfoContainer);
+    // Game info top row for: Gamestate, bank roll, bet amount
+    const gameInfoTop = document.createElement('div');
+    gameInfoTop.classList.add('splitRow');
+    // gameInfoTop.classList.add("gameInfo");
+    gameInfoContainer.appendChild(gameInfoTop);
+    // Game state message box
+    const gameStateBox = document.createElement('div');
+    gameStateBox.classList.add('gameStateBox');
+    gameStateBox.innerText = "Welcome to Video Poker! Let's play cards!";
+    gameInfoTop.appendChild(gameStateBox);
+    // Name titles for cells
+    const cellName = document.createElement('div');
+    cellName.innerText = 'Bank:';
+    cellName.classList.add('cellName');
+    gameInfoTop.appendChild(cellName);
+    // Player bank roll display
+    const playerBankRoll = document.createElement('div');
+    playerBankRoll.classList.add('numbersInfo');
+    playerBankRoll.id = 'playerBankRoll';
+    playerBankRoll.innerText = _gameIncantationJs.playerData.bank;
+    gameInfoTop.appendChild(playerBankRoll);
+    // Player bet amount
+    const cellName2 = document.createElement('div');
+    cellName2.innerText = 'Bet:';
+    cellName2.classList.add('cellName');
+    gameInfoTop.appendChild(cellName2);
+    const playerBet = document.createElement('div');
+    playerBet.id = 'playerBet';
+    playerBet.classList.add('numbersInfo');
+    playerBet.innerText = _gameIncantationJs.playerData.currentBet;
+    gameInfoTop.appendChild(playerBet);
+    // Game info bottom row
+    const gameInfoBtm = document.createElement('div');
+    gameInfoBtm.classList.add('splitRow');
+    // gameInfoBtm.classList.add("gameInfo");
+    gameInfoContainer.appendChild(gameInfoBtm);
+    // game information ie cards selected for replacement
+    const gameToolTip = document.createElement('div');
+    gameToolTip.id = 'gameToolTip';
+    gameToolTip.innerText = 'Place your bet to start';
+    gameInfoBtm.appendChild(gameToolTip);
+    // Input box for bet
+    const betInput = document.createElement('input');
+    betInput.id = 'betInput';
+    betInput.placeholder = 'Bet Amount';
+    betInput.classList.add('showed');
+    gameInfoBtm.appendChild(betInput);
+    // Button to trigger next event in the game state
+    const actionButton = document.createElement('div');
+    actionButton.id = 'actionButton';
+    actionButton.innerText = 'Place bet!';
+    // adding the function that will link back to the game logic
+    actionButton.addEventListener('click', makeButtonAction(betInput, playerBet, playerBankRoll));
+    gameInfoBtm.appendChild(actionButton);
+};
+// function for the button to take in bets or confirm replacement
+// @param betInput {DOM} to log the player bet
+// @param playerBet {DOM} to update the bet into the UI
+// @param playerBankRoll {DOM} to update the updated bankroll into the UI
+function makeButtonAction(betInput, playerBet, playerBankRoll) {
+    function buttonAction(event) {
+        // action for gamestate at betting phase
+        if (_gameIncantationJs.gameState === 'betPhase') {
+            // check for invaide inputs
+            if (betInput.value > 0 && betInput.value <= _gameIncantationJs.playerData.bank) {
+                _gameIncantationJs.playerData.currentBet = betInput.value;
+                playerBet.innerText = _gameIncantationJs.playerData.currentBet;
+                _gameIncantationJs.playerData.bank -= _gameIncantationJs.playerData.currentBet;
+                playerBankRoll.innerText = _gameIncantationJs.playerData.bank;
+                console.log('here', _gameIncantationJs.playerData.currentBet);
+                _gameIncantationJs.updateGameState();
+            } else document.getElementById('gameToolTip').innerText = 'Please input a number.';
+        }
+    }
+    return buttonAction;
+}
+function gameBoard(handSize, dealt, hideHand = true) {
+    const cardBoard = document.createElement('div');
+    cardBoard.classList.add('board');
+    document.body.appendChild(cardBoard);
+    for(let i = 0; i < handSize; i += 1){
+        const card = document.createElement('div');
+        cardBoard.appendChild(card);
+        if (dealt && hideHand) {
+            const cardImage = document.createElement('img');
+            cardImage.classList.add('card');
+            cardImage.src = './assets/Cards Pack/PNG/Medium/Back Red 1.png';
+            card.appendChild(cardImage);
+            cardImage.addEventListener('click', makeCardAction(i));
+        } else if (!hideHand) {
+            const cardImage = document.createElement('img');
+            cardImage.classList.add('card');
+            cardImage.src = `./assets/Cards Pack/PNG/Medium/${_gameIncantationJs.playerData.hand[i]}.png`;
+            card.appendChild(cardImage);
+            cardImage.addEventListener('click', makeCardAction(i));
+            _gameIncantationJs.playerData.revealCount += 1;
+        } else card.className = 'cardShadow';
+    }
+}
+function makeCardAction(index) {
+    function cardAction(event) {
+        // card reveal on click and log reveal count to move to next phase when all cards revealed
+        if (_gameIncantationJs.gameState === 'dealPhase') {
+            const cardPath = _gameIncantationJs.playerData.hand[index].imageRef;
+            cardImage.scr = `./assets/Cards Pack/PNG/Medium/${cardPath}.png`;
+            _gameIncantationJs.playerData.revealCount += 1;
+            if (_gameIncantationJs.playerData.revealCount === handSize) _gameIncantationJs.updateGameState();
+        }
+    }
+    return cardAction;
+}
+
+},{"./gameIncantation.js":"3gkOT","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}]},["2S9hd","3gkOT"], "3gkOT", "parcelRequire2c8c")
 
 //# sourceMappingURL=gameSite.43aee3ba.js.map
