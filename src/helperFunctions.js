@@ -190,7 +190,7 @@ export const tallyCombinations = (hand) => {
 // checking for straights
 // @param rank {array} array of the card ranks in {string}
 // @return true if the cards are straights
-function straightsCheck(rank) {
+export function straightsCheck(rank) {
   let straightCount = 0;
   // count for 4 consecutive straights checks
   for (let i = 0; i < rank.length - 1; i += 1) {

@@ -6,6 +6,7 @@
   "scripts": {
     "start": "parcel",
     "build": "parcel build",
+    "test": "jest",
     "lint": "eslint *.js",
     "lint:fix": "npm run lint -- --fix"
   },
@@ -20,9 +21,14 @@
   },
   "homepage": "https://github.com/rocketacademy/video-poker-swe1#readme",
   "devDependencies": {
+    "@babel/core": "^7.16.5",
+    "@babel/preset-env": "^7.16.5",
+    "@types/jest": "^27.0.3",
+    "babel-jest": "^27.4.5",
     "eslint": "^7.6.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jest": "^25.3.0",
     "jest": "^27.4.5",
     "parcel": "^2.0.1"
   }
