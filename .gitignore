@@ -3,3 +3,9 @@
 
 # Dependency directories
 node_modules/
+
+# Build files
+dist/
+
+.parcel-cache/
+
