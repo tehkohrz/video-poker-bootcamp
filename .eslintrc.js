@@ -2,6 +2,7 @@ module.exports = {
   env: {
     browser: true,
     es2020: true,
+    'jest/globals': true,
   },
   extends: [
     'airbnb-base',
@@ -9,6 +10,7 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 11,
   },
+  plugins: ['jest'],
   rules: {
     // Don't enforce control flow closing curly brace needs to be
     // on same line as next control flow opening statement
