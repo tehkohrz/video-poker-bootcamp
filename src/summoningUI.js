@@ -107,7 +107,10 @@ export function gameBoard(handSize, dealt, hideHand = true) {
     if (dealt && hideHand) {
       const cardImage = document.createElement('img');
       cardImage.classList.add('card');
-      cardImage.src = './assets/Cards Pack/PNG/Medium/Back Red 1.png';
+      cardImage.src = new URL(
+        '../assets/cardsPack/PNG/Medium//Back Red 1.png?as=webp&width=250',
+        import.meta.url,
+      );
       card.appendChild(cardImage);
       cardImage.addEventListener('click', makeCardAction(i));
     }
@@ -115,7 +118,10 @@ export function gameBoard(handSize, dealt, hideHand = true) {
     else if (!hideHand) {
       const cardImage = document.createElement('img');
       cardImage.classList.add('card');
-      cardImage.src = `./assets/Cards Pack/PNG/Medium/${playerData.hand[i]}.png`;
+      cardImage.src = new URL(
+        `../assets/cardsPack/PNG/Medium/${playerData.hand[i]}.png`,
+        import.meta.url,
+      );
       card.appendChild(cardImage);
       cardImage.addEventListener('click', makeCardAction(i));
       playerData.revealCount += 1;
