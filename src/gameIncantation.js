@@ -1,94 +1,54 @@
-import {
-  makeDeck,
-  dealCards,
-  shuffleCards,
-  tallyCombinations,
-  checkPayOut,
-} from './helperFunctions.js';
+import { cardImageSources, SUIT } from './cardImageSources';
 
-import { gameStartUI, gameBoard } from './summoningUI.js';
+const suits = Object.values(SUIT);
 
-let gameDeck = [];
-export const handSize = 5;
-export let gameState;
-export const playerData = {
-  name: '',
-  currentBet: 0,
-  bank: '100',
-  hand: undefined,
-  // [
-  // {
-  //   imageRef: 'Spades 8',
-  //   name: 'Ace',
-  //   rank: 1,
-  //   replaceToggle: false,
-  //   suit: 'Spades',
-  // },
-  // {
-  //   imageRef: 'Spades 8',
-  //   name: '10',
-  //   rank: 10,
-  //   replaceToggle: false,
-  //   suit: 'Spades',
-  // },
-  // {
-  //   imageRef: 'Spades 8',
-  //   name: 'King',
-  //   rank: 13,
-  //   replaceToggle: false,
-  //   suit: 'Spades',
-  // },
-  // {
-  //   imageRef: 'Spades 8',
-  //   name: 'Queen',
-  //   rank: 12,
-  //   replaceToggle: false,
-  //   suit: 'Spades',
-  // },
-  // {
-  //   imageRef: 'Spades 8',
-  //   name: 'Jack',
-  //   rank: 11,
-  //   replaceToggle: false,
-  //   suit: 'Spades',
-  // },
-  // ],
-  handCombos: {},
-  revealCount: 0,
-};
-const betPhase = 'betPhase';
-const dealPhase = 'dealPhase';
-const replaceCardsPhase = 'replaceCardsPhase';
-const payOutPhase = 'payOutPhase';
+function createHandUI(handState = [], onCardClick = (cardIndex) => { console.log(`Clicked on ${cardIndex}th card.`); }) {
+  const handContainer = document.createElement('div');
+  handContainer.classList.add('board');
 
-const initGame = () => {
-  gameState = betPhase;
-  // create game deck and shuffle cards
-  gameDeck = shuffleCards(makeDeck());
-  // generates the UI for game
-  gameStartUI();
-  gameBoard(handSize, true);
-};
-initGame();
+  for (let i = 0; i < handState.length; i += 1) {
+    const cardElement = document.createElement('div');
+    cardElement.classList.add('cardShadow');
 
-// To manage the different stages of the game and implement logic and site display
-export const updateGameState = () => {
-  if (gameState === betPhase) {
-    document.getElementById('gameToolTip').innerText = 'Cards have been dealt best of luck';
-    dealCards(gameDeck, playerData.hand, handSize);
-    // remove the board so tha can update but there has to be a better way
-    gameBoard(handSize, true);
-    document.body.removeChild(document.querySelector('.board'));
-    document.getElementById('actionButton').innerText = 'Show hand';
-    gameState = dealPhase;
+    const img = document.createElement('img');
+
+    const {
+      suit, rank, faceDown,
+    } = handState[i];
+    img.src = suit && rank && !faceDown ? cardImageSources[suit][rank] : cardImageSources.back;
+
+    cardElement.appendChild(img);
+    cardElement.onclick = () => onCardClick(i);
+    handContainer.appendChild(cardElement);
   }
-  if (gameState === dealPhase) {
-    dealCards(gameDeck, playerData.hand, handSize);
-    // insert logic for the the card display function
-    gameState = replaceCardsPhase;
+
+  return handContainer;
+}
+
+function renderHandUI(handContainer) {
+  document.body.replaceChildren(handContainer);
+}
+
+function randomlyGenerateHand(faceDown = true) {
+  const handState = [];
+
+  for (let i = 0; i < 5; i += 1) {
+    handState.push({
+      suit: suits[Math.floor(Math.random() * 4)],
+      rank: Math.floor(Math.random() * 13) + 1,
+      faceDown,
+    });
   }
-  if (gameState === replaceCardsPhase) {
-    dealCards(gameDeck, playerData.hand);
-    gameState = payOutPhase;
-  }
-};
+
+  return handState;
+}
+
+(() => {
+  // Initialise
+  const handState = randomlyGenerateHand();
+  const handContainer = createHandUI(handState, function onCardClick(index) {
+    handState[index].faceDown = !handState[index].faceDown;
+    renderHandUI(createHandUI(handState, onCardClick));
+  });
+  renderHandUI(handContainer);
+})();

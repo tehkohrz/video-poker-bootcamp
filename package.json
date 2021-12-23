@@ -23,6 +23,7 @@
   "devDependencies": {
     "@babel/core": "^7.16.5",
     "@babel/preset-env": "^7.16.5",
+    "@parcel/babel-preset-env": "^2.0.1",
     "@types/jest": "^27.0.3",
     "babel-jest": "^27.4.5",
     "eslint": "^7.6.0",
@@ -30,6 +31,7 @@
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-jest": "^25.3.0",
     "jest": "^27.4.5",
-    "parcel": "^2.0.1"
+    "parcel": "^2.0.1",
+    "sharp": "^0.29.3"
   }
 }
