@@ -62,7 +62,7 @@ export const makeDeck = () => {
         name: cardName,
         suit: currentSuit,
         rank: rankCounter,
-        imageRef: `${currentSuit} ${cardName}`,
+        imageRef: `${currentSuit} ${cardName}.png`,
         replaceToggle: false,
       };
 
