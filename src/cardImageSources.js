@@ -1,9 +1,16 @@
+export const SUIT = {
+  DIAMOND: 'diamond',
+  CLUBS: 'clubs',
+  SPADES: 'spades',
+  HEARTS: 'hearts',
+};
+
 export const cardImageSources = {
   back: new URL(
     '../assets/cardsPack/PNG/Medium//Back Red 1.png',
     import.meta.url,
   ),
-  clubs: {
+  [SUIT.CLUBS]: {
     1: new URL(
       '../assets/cardsPack/PNG/Medium/Clubs 1.png',
       import.meta.url,
@@ -57,7 +64,7 @@ export const cardImageSources = {
       import.meta.url,
     ),
   },
-  spades: {
+  [SUIT.SPADES]: {
     1: new URL(
       '../assets/cardsPack/PNG/Medium/Spades 1.png',
       import.meta.url,
@@ -111,7 +118,7 @@ export const cardImageSources = {
       import.meta.url,
     ),
   },
-  hearts: {
+  [SUIT.HEARTS]: {
     1: new URL(
       '../assets/cardsPack/PNG/Medium/Hearts 1.png',
       import.meta.url,
@@ -165,7 +172,7 @@ export const cardImageSources = {
       import.meta.url,
     ),
   },
-  diamond: {
+  [SUIT.DIAMOND]: {
     1: new URL(
       '../assets/cardsPack/PNG/Medium/Diamond 1.png',
       import.meta.url,

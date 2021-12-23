@@ -1,60 +1,54 @@
-import { cardImageSources } from './cardImageSources';
+import { cardImageSources, SUIT } from './cardImageSources';
 
-function createHandUI(handSize = 5) {
+const suits = Object.values(SUIT);
+
+function createHandUI(handState = [], onCardClick = (cardIndex) => { console.log(`Clicked on ${cardIndex}th card.`); }) {
   const handContainer = document.createElement('div');
-  const handElements = [];
-  for (let i = 0; i < handSize; i += 1) {
+  handContainer.classList.add('board');
+
+  for (let i = 0; i < handState.length; i += 1) {
     const cardElement = document.createElement('div');
+    cardElement.classList.add('cardShadow');
+
     const img = document.createElement('img');
-    img.src = cardImageSources.back;
+
+    const {
+      suit, rank, faceDown,
+    } = handState[i];
+    img.src = suit && rank && !faceDown ? cardImageSources[suit][rank] : cardImageSources.back;
 
     cardElement.appendChild(img);
+    cardElement.onclick = () => onCardClick(i);
     handContainer.appendChild(cardElement);
-
-    handElements.push(cardElement);
   }
 
-  return {
-    handContainer,
-    handElements,
-  };
+  return handContainer;
 }
 
-function updateHandUI(handElements = [], handState = []) {
-  for (let i = 0; i < handElements.length; i += 1) {
-    const cardElement = handElements[i];
-    const { suit, rank } = handState[i];
-
-    if (cardElement) {
-      const img = document.createElement('img');
-      img.src = cardImageSources[suit][rank];
-
-      cardElement.replaceChildren(img);
-    }
-  }
-}
-
-let interval;
-(function () {
-  // Initialise
-  const { handContainer, handElements } = createHandUI();
+function renderHandUI(handContainer) {
   document.body.replaceChildren(handContainer);
+}
 
-  const suits = ['diamond', 'clubs', 'spades', 'hearts'];
+function randomlyGenerateHand(faceDown = true) {
+  const handState = [];
 
-  clearInterval(interval);
-  // Update handstate
-  interval = setInterval(() => {
-    const handState = [];
+  for (let i = 0; i < 5; i += 1) {
+    handState.push({
+      suit: suits[Math.floor(Math.random() * 4)],
+      rank: Math.floor(Math.random() * 13) + 1,
+      faceDown,
+    });
+  }
 
-    // Randomly generate a hand
-    for (let i = 0; i < 5; i += 1) {
-      handState.push({
-        suit: suits[Math.floor(Math.random() * 4)],
-        rank: Math.floor(Math.random() * 13) + 1,
-      });
-    }
+  return handState;
+}
 
-    updateHandUI(handElements, handState);
-  }, 1000);
-}());
+(() => {
+  // Initialise
+  const handState = randomlyGenerateHand();
+  const handContainer = createHandUI(handState, function onCardClick(index) {
+    handState[index].faceDown = !handState[index].faceDown;
+    renderHandUI(createHandUI(handState, onCardClick));
+  });
+  renderHandUI(handContainer);
+})();
