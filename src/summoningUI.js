@@ -1,3 +1,5 @@
+import { cardImageSources } from "./cardImageSrc";
+
 // function to build the containters
 function createContainer(className, id) {
   const container = document.createElement('div');
@@ -35,7 +37,32 @@ export function createMainUI(payTable, playerData, handSize) {
 }
 
 // Create elements for each card to be appended into the table
-function createCardElements() {
+// @param handState {array} of 
+// card {object} const card = {
+//   name: cardName,
+//   suit: currentSuit,
+//   rank: rankCounter,
+//   faceDown: true,
+//   replaceToggle: false,
+// };
+function createCardElements(handState) {
+  for (let i = 0; i < handState.length; i+=1){
+    // deconstruct the card object
+    const {suit, rank, faceDown} = handState[i];
+    const cardImage = document.createElement('img');
+    // rend the back of the card if the card has not been revealed
+    if (faceDown){
+      cardImage.src = cardImageSources.back;
+      cardImage.id = i;
+      // event listener for reveal
+      cardImage.onclick = ()=>{
+        const updatedCardElements = revealCard(handState, i);
+        tableContainer.replaceChildren(updatedCardElements);
+      };
+    }
+    else{
+      cardImage.src = cardImageSources[suit][rank];
+    }
 
 }
 
@@ -76,6 +103,13 @@ function generatePayTable(payTable, betAmount = 1) {
 // Renders payTable Elements into the website
 function renderPayTableUI(parentElement, payTableElements) {
   parentElement.replaceChildren(payTableElements);
+}
+
+// Reveals the facedown card
+function revealCard(handState,index){
+  handState[index][faceDown] = false;
+  const updatedCardElements = createCardElements(handState);
+  return handState;
 }
 
 // // function initialises the container for game information display and messages

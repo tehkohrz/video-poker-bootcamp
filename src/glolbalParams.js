@@ -1,15 +1,15 @@
 export const gamePhase = {
-  BET: 'BET_PHASE',
-  DEAL: 'DEAL_CARDS',
-  REPLACE: 'REPLACE_CARDS',
-  PAY: 'PAYOUT_PHASE',
-  RESTART: 'RESTART',
+  BET: "BET_PHASE",
+  DEAL: "DEAL_CARDS",
+  REPLACE: "REPLACE_CARDS",
+  PAY: "PAYOUT_PHASE",
+  RESTART: "RESTART",
 };
 export const payTable = {
-  'Royal Flush': 800,
-  'Straights Flush': 50,
-  'Four Of Kind': 25,
-  'Full House': 9,
+  "Royal Flush": 800,
+  "Straights Flush": 50,
+  "Four Of Kind": 25,
+  "Full House": 9,
   Flush: 6,
   Straights: 4,
   Triples: 3,
@@ -19,10 +19,10 @@ export const payTable = {
 export const gameDeck = [];
 export const HAND_SIZE = 5;
 export const playerData = {
-  phase: '',
-  name: '',
+  phase: "",
+  name: "",
   currentBet: 0,
-  bank: '100',
+  bank: "100",
   hand: undefined,
   // [
   // {

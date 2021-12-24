@@ -4,16 +4,14 @@ import {
   shuffleCards,
   tallyCombinations,
   checkPayOut,
-} from './helperFunctions.js';
+} from "./helperFunctions.js";
 
-import { payTable, playerData, gamePhase } from './glolbalParams.js';
+import { payTable, playerData, gamePhase } from "./glolbalParams.js";
 
-import {
-  createMainUI,
-} from './summoningUI.js';
+import { createMainUI } from "./summoningUI.js";
 
 const initGame = () => {
-  document.body.innerHTML = '';
+  document.body.innerHTML = "";
   playerData.phase = gamePhase.BET;
   // create game deck and shuffle cards
   gameDeck = shuffleCards(makeDeck());
@@ -22,14 +20,11 @@ const initGame = () => {
 initGame();
 
 // Functions for the game states
-function betPhaseUpdate(playerBet) {
-
-}
+function betPhaseUpdate(playerBet) {}
 
 // To manage the different stages of the game and implement logic and site display
 export const updateGameState = () => {
   if (playerData.phase === gamePhase.BET) {
-
   }
   if (playerData.phase === gamePhase.DEAL) {
     dealCards(gameDeck, playerData.hand, HAND_SIZE);
