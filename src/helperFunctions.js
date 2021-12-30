@@ -33,7 +33,7 @@ export const makeDeck = () => {
   // Initialise an empty deck array
   const newDeck = [];
   // Initialise an array of the 4 suits in our deck. We will loop over this array.
-  const suits = ["hearts", "diamond", "clubs", "spades"];
+  const suits = ["Hearts", "Diamond", "Clubs", "Spades"];
 
   // Loop over the suits array
   for (let suitIndex = 0; suitIndex < suits.length; suitIndex += 1) {

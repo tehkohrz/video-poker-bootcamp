@@ -1,8 +1,8 @@
 export const SUIT = {
-  DIAMOND: "diamond",
-  CLUBS: "clubs",
-  SPADES: "spades",
-  HEARTS: "hearts",
+  DIAMOND: "Diamond",
+  CLUBS: "Clubs",
+  SPADES: "Spades",
+  HEARTS: "Hearts",
 };
 
 // Importing the images for parcel to process and exporting for use

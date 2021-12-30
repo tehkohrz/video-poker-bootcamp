@@ -16,51 +16,50 @@ export const payTable = {
   Pair: 2,
 };
 
-export const gameDeck = [];
 export const HAND_SIZE = 5;
 export const playerData = {
   phase: "",
   name: "",
   currentBet: 0,
   bank: "100",
-  hand: undefined,
-  // [
-  // {
-  //   imageRef: 'Spades 8',
-  //   name: 'Ace',
-  //   rank: 1,
-  //   replaceToggle: false,
-  //   suit: 'Spades',
-  // },
-  // {
-  //   imageRef: 'Spades 8',
-  //   name: '10',
-  //   rank: 10,
-  //   replaceToggle: false,
-  //   suit: 'Spades',
-  // },
-  // {
-  //   imageRef: 'Spades 8',
-  //   name: 'King',
-  //   rank: 13,
-  //   replaceToggle: false,
-  //   suit: 'Spades',
-  // },
-  // {
-  //   imageRef: 'Spades 8',
-  //   name: 'Queen',
-  //   rank: 12,
-  //   replaceToggle: false,
-  //   suit: 'Spades',
-  // },
-  // {
-  //   imageRef: 'Spades 8',
-  //   name: 'Jack',
-  //   rank: 11,
-  //   replaceToggle: false,
-  //   suit: 'Spades',
-  // },
-  // ],
+  //undefined,
+  hand: [
+    {
+      faceDown: false,
+      name: "Ace",
+      rank: 2,
+      replaceToggle: false,
+      suit: "Spades",
+    },
+    {
+      name: "10",
+      faceDown: true,
+      rank: 10,
+      replaceToggle: false,
+      suit: "Spades",
+    },
+    {
+      name: "King",
+      faceDown: true,
+      rank: 13,
+      replaceToggle: false,
+      suit: "Spades",
+    },
+    {
+      name: "Queen",
+      faceDown: true,
+      rank: 12,
+      replaceToggle: false,
+      suit: "Spades",
+    },
+    {
+      name: "Jack",
+      faceDown: true,
+      rank: 11,
+      replaceToggle: false,
+      suit: "Spades",
+    },
+  ],
   handCombos: {},
   revealCount: 0,
 };
