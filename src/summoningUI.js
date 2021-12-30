@@ -1,5 +1,4 @@
 import { cardImageSources } from './cardImageSrc';
-import { updateGameState } from './gameIncantation';
 import { gamePhase, payTable, playerData } from './glolbalParams';
 
 // function to build the containters
@@ -242,7 +241,6 @@ function createConsoleUI() {
     renderElement(payTableMain, payTableUI);
   };
   buttonMain.appendChild(inputBox);
-  consoleUI.appendChild(buttonMain);
   // plus minus button
   const plusMinusContainer = createContainer('plusMinus');
   const plusButton = createContainer('subButton');
@@ -262,6 +260,31 @@ function createConsoleUI() {
   plusMinusContainer.appendChild(minusButton);
   buttonMain.appendChild(plusMinusContainer);
   // confirm button
-  const mainButton = createContainer('button');
+  const mainButton = createContainer('mainButton');
+  mainButton.innerText = 'Confirm';
+  mainButton.onclick = makeUpdateMainButton(mainButton);
+  buttonMain.appendChild(mainButton);
+  consoleUI.appendChild(buttonMain);
   return consoleUI;
+}
+// function that updates the main button title depending on the gameState
+// calls updateGameState to progress the game
+function makeUpdateMainButton(buttonElement) {
+  function updateMainButton(event) {
+    // updating of the button name
+    if (playerData.phase == gamePhase.BET) {
+      buttonElement.innerText = 'Confirm';
+    }
+    if (playerData.phase == gamePhase.DEAL) {
+      buttonElement.innerText = 'Show Hand!';
+    }
+    if (playerData.phase == gamePhase.REPLACE) {
+      buttonElement.innerText = 'Confirm';
+    }
+    if (playerData.phase == gamePhase.PAY) {
+      buttonElement.innerText = 'Next round';
+    }
+    updateGameState();
+  }
+  return updateMainButton;
 }
