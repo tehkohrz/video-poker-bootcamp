@@ -1,10 +1,10 @@
-import { cardImageSources } from "./cardImageSrc";
-import { updateGameState } from "./gameIncantation";
-import { gamePhase, payTable, playerData } from "./glolbalParams";
+import { cardImageSources } from './cardImageSrc';
+import { updateGameState } from './gameIncantation';
+import { gamePhase, payTable, playerData } from './glolbalParams';
 
 // function to build the containters
 function createContainer(className, id) {
-  const container = document.createElement("div");
+  const container = document.createElement('div');
   if (className) {
     container.classList.add(className);
   }
@@ -24,37 +24,39 @@ export function renderElement(parentElement, childElement) {
 
 export function createMainUI(payTable, playerData, handSize) {
   // Main container to hold the whole UI and center it to the screen
-  const mainContainer = createContainer("main");
+  const mainContainer = createContainer('main');
   // title name of the game
-  const titleName = createContainer("title");
-  titleName.innerText = "♠️ Video Poker ♠️";
+  const titleName = createContainer('title');
+  titleName.innerText = '♠️ Video Poker ♠️';
   mainContainer.appendChild(titleName);
   // paytable that will show the odds and update as you increase the bet
   // two columns on with the Header and odd that changes based on the bet amount
-  const payTableContainer = createContainer("payTableMain");
+  const payTableContainer = createContainer('payTableMain', 'payTableMain');
   const payTableUI = generatePayTable(payTable);
   renderElement(payTableContainer, payTableUI);
   mainContainer.appendChild(payTableContainer);
   // table board for the cards to be render
-  const tableContainer = createContainer("tableMain", "tableMain");
+  const tableContainer = createContainer('tableMain', 'tableMain');
   const cardTableUI = generateCardTable(handSize);
   tableContainer.appendChild(cardTableUI);
   mainContainer.appendChild(tableContainer);
   document.body.appendChild(mainContainer);
   // Msg container for the game messages
-  const msgControlContainer = createContainer("msgControlMain");
+  const msgControlContainer = createContainer('msgControlMain');
   mainContainer.appendChild(msgControlContainer);
-  const msgContainer = createContainer("msgMain");
+  const msgContainer = createContainer('msgMain');
   const gamePhaseMsg = generateGameMsg(playerData.phase);
   const gameToolTip = generateToolTip(playerData.phase);
   msgContainer.appendChild(gamePhaseMsg);
   msgContainer.appendChild(gameToolTip);
   msgControlContainer.appendChild(msgContainer);
   // Control container for the bank info, bet info, bet input and the button control
-  // const controlContainer = createContainer("controlMain");
-  // const consoleUI = createConsoleUI();
-  // mainContainer.appendChild(msgControlContainer);
-  // document.body.appendChild(mainContainer);
+  const controlContainer = createContainer('controlMain');
+  const consoleUI = createConsoleUI();
+  controlContainer.appendChild(consoleUI);
+  msgControlContainer.appendChild(controlContainer);
+  mainContainer.appendChild(msgControlContainer);
+  document.body.appendChild(mainContainer);
 }
 
 // Create elements for each card to be appended into the table
@@ -67,19 +69,19 @@ export function createMainUI(payTable, playerData, handSize) {
 //   replaceToggle: false,
 // };
 export function createCardElements(handState) {
-  const tableBackground = createContainer("tableBackground");
+  const tableBackground = createContainer('tableBackground');
   for (let i = 0; i < handState.length; i += 1) {
     // deconstruct the card object
-    let { suit, rank, faceDown } = handState[i];
-    const cardImage = document.createElement("img");
-    cardImage.className = "card";
+    const { suit, rank, faceDown } = handState[i];
+    const cardImage = document.createElement('img');
+    cardImage.className = 'card';
     cardImage.id = i;
-    console.log("card ID", cardImage.id);
+    console.log('card ID', cardImage.id);
     // rend the back of the card if the card has not been revealed
     if (faceDown) {
       cardImage.src = cardImageSources.back;
       // event listener for reveal
-      cardImage.addEventListener("click", makeCardAction(handState, cardImage));
+      cardImage.addEventListener('click', makeCardAction(handState, cardImage));
     } else {
       cardImage.src = cardImageSources[suit][rank];
       cardImage.onclick = makeCardAction(handState, cardImage);
@@ -87,14 +89,6 @@ export function createCardElements(handState) {
     tableBackground.appendChild(cardImage);
   }
   return tableBackground;
-}
-
-// replace card action on image
-function makeReplaceCardAction(handState, i) {
-  function replaceCardAction(event) {
-    // if card has been flagged for replacing and clicked again, to deselect
-  }
-  return replaceCardAction;
 }
 // Function attached to the card changes depending on the gamePhase
 // To reveal the card or to select for replacement
@@ -114,12 +108,12 @@ function makeCardAction(handState, cardImage) {
     // To highlight the card when it has been selected for replace
     else if (playerData.phase === gamePhase.REPLACE) {
       if (card.replaceToggle) {
-        cardImage.className = "card";
+        cardImage.className = 'card';
         card.replaceToggle = false;
       }
       // card now being selected for replacing
       else {
-        cardImage.className = "cardHighlighted";
+        cardImage.className = 'cardHighlighted';
         card.replaceToggle = true;
       }
     }
@@ -129,9 +123,9 @@ function makeCardAction(handState, cardImage) {
 
 // Generates an empty table for the cards
 function generateCardTable(handSize) {
-  const cardTableUI = createContainer("tableBackground");
+  const cardTableUI = createContainer('tableBackground');
   for (let i = 0; i < handSize; i += 1) {
-    const cardShadowElements = createContainer("cardShadow");
+    const cardShadowElements = createContainer('cardShadow');
     cardTableUI.appendChild(cardShadowElements);
   }
   return cardTableUI;
@@ -142,15 +136,18 @@ function generateCardTable(handSize) {
 // @param payTable {object} containing the odds of the game used to generate the pay table
 // @return all elements of the paytable
 function generatePayTable(payTable, betAmount = 1) {
-  const payTableInfo = createContainer("payTable");
+  const payTableInfo = createContainer('payTable');
+  // if (betAmount < 1) {
+  //   betAmount = 1;
+  // }
   // cycle through the keys in the paytable to generate the rows in the payTable
   const keyValues = Object.entries(payTable);
   for (let i = 0; i < keyValues.length; i += 1) {
     const [key, value] = keyValues[i];
-    const tableRow = createContainer("payTableRows");
-    const tableHeaderCol = createContainer("payTableHeaderCol");
+    const tableRow = createContainer('payTableRows');
+    const tableHeaderCol = createContainer('payTableHeaderCol');
     tableHeaderCol.innerText = key;
-    const tableOddsCol = createContainer("payTableOddsCol");
+    const tableOddsCol = createContainer('payTableOddsCol');
     // Calculate the the payout amount according to the bet amount
     tableOddsCol.innerText = value * betAmount;
     tableRow.appendChild(tableHeaderCol);
@@ -161,33 +158,32 @@ function generatePayTable(payTable, betAmount = 1) {
 }
 
 // Creates the msg box and renders the msg according to the gamephase
-function generateGameMsg(gamePhase) {
-  const gamePhaseMsg = createContainer("gamePhaseContainer");
-  if (gamePhase == gamePhase.BET) {
-    gamePhaseMsg.innerText = "Welcome to Video Poke! Place your bets!";
+function generateGameMsg(currentGamePhase) {
+  const gamePhaseMsg = createContainer('gamePhaseContainer');
+  if (currentGamePhase == gamePhase.BET) {
+    gamePhaseMsg.innerText = 'Welcome to Video Poke! Place your bets!';
   }
-  if (gamePhase == gamePhase.DEAL) {
-    gamePhaseMsg.innerText = "Cards have been dealt. Best of luck!";
+  if (currentGamePhase == gamePhase.DEAL) {
+    gamePhaseMsg.innerText = 'Cards have been dealt. Best of luck!';
   }
-  if (gamePhase == gamePhase.REPLACE) {
-    gamePhaseMsg.innerText = "You may choose to replace any number of cards.";
+  if (currentGamePhase == gamePhase.REPLACE) {
+    gamePhaseMsg.innerText = 'You may choose to replace any number of cards.';
   }
-  if (gamePhase == gamePhase.PAY) {
-    gamePhaseMsg.innerText =
-      "You have won or lost. Click to start a new round.";
+  if (currentGamePhase == gamePhase.PAY) {
+    gamePhaseMsg.innerText = 'You have won or lost. Click to start a new round.';
   }
   return gamePhaseMsg;
 }
 
-function generateToolTip(gamePhase) {
-  const gameToolTip = createContainer("gameToolTipContainer");
-  if (gamePhase == gamePhase.BET) {
-    gameToolTip.innerText = "Select using the buttons or enter your bet.";
+function generateToolTip(currentGamePhase) {
+  const gameToolTip = createContainer('gameToolTipContainer');
+  if (currentGamePhase == gamePhase.BET) {
+    gameToolTip.innerText = 'Select using the buttons or enter your bet.';
   }
-  if (gamePhase == gamePhase.DEAL) {
-    gameToolTip.innerText = "Click on each card to reveal your hand.";
+  if (currentGamePhase == gamePhase.DEAL) {
+    gameToolTip.innerText = 'Click on each card to reveal your hand.';
   }
-  if (gamePhase == gamePhase.REPLACE) {
+  if (currentGamePhase == gamePhase.REPLACE) {
     const cards = Object.entries(playerData.hand);
     let cardsSelected = 0;
     for (let i = 0; i < card.length; i += 1) {
@@ -196,59 +192,76 @@ function generateToolTip(gamePhase) {
       }
     }
     if (cardsSelected === 0) {
-      gameToolTip.innerText = "You have not selected any cards to replace.";
+      gameToolTip.innerText = 'You have not selected any cards to replace.';
     } else {
       gameToolTip.innerText = `You have selected ${cardsSelected} cards to replace.`;
     }
   }
-  if (gamePhase == gamePhase.PAY) {
-    gameToolTip.innerText = "You have won or lost. Click to start a new round.";
+  if (currentGamePhase == gamePhase.PAY) {
+    gameToolTip.innerText = 'You have won or lost. Click to start a new round.';
   }
   return gameToolTip;
 }
 
 function createConsoleUI() {
-  const consoleUI = createContainer("consoleMain");
-  const infoContainer = createContainer("infoContainer");
-  const bankContainer = createContainer("bankContainer");
+  // main container split into two sub containers for info and buttons
+  const consoleUI = createContainer('consoleMain');
+  const infoContainer = createContainer('infoContainer');
+  const bankContainer = createContainer('bankContainer');
   // container for player current bank roll
-  const bankTitle = createContainer("subTitle");
-  bankTitle.innerText = "BANK";
-  const bankAmount = createContainer("number", "bankAmount");
+  const bankTitle = createContainer('subTitle');
+  bankTitle.innerText = 'BANK';
+  const bankAmount = createContainer('number', 'bankAmount');
   bankAmount.innerText = playerData.currentBet;
   bankContainer.appendChild(bankTitle);
-  bankContainer.appendChild(betAmount);
+  bankContainer.appendChild(bankAmount);
   // container for player cuurent bet amount
-  const betContainer = createContainer("betContainer");
-  const betTitle = createContainer("subTitle");
-  betTitle.innerText = "BET";
-  const betAmount = createContainer("number", "betAmount");
+  const betContainer = createContainer('betContainer');
+  const betTitle = createContainer('subTitle');
+  betTitle.innerText = 'BET';
+  const betAmount = createContainer('number', 'betAmount');
   betAmount.innerText = playerData.currentBet;
   betContainer.appendChild(betTitle);
   betContainer.appendChild(betAmount);
   infoContainer.appendChild(bankContainer);
   infoContainer.appendChild(betContainer);
+  consoleUI.appendChild(infoContainer);
   // container for interactive UI elements
-  const buttonMain = createContainer("buttonMain");
+  const buttonMain = createContainer('buttonMain');
   // inputbox to enter bet amount
-  const inputBox = document.createElement("input");
-  inputBox.id = "inputBox";
-  inputBox.placeholder = "Input bet here or use buttons.";
-  inputBox.type = "number";
+  const inputBox = document.createElement('input');
+  inputBox.id = 'inputBox';
+  inputBox.placeholder = 'Input bet here.';
+  inputBox.type = 'number';
+  inputBox.min = 1;
   // auto updates the bet table while you input the value
-  inputBox.addEventListener(
-    "input",
-    makeUpdatePayTable(payTable, inputBox.value)
-  );
+  inputBox.onchange = (event) => {
+    const currentBetAmount = document.getElementById('inputBox').value;
+    const payTableUI = generatePayTable(payTable, currentBetAmount);
+    const payTableMain = document.getElementById('payTableMain');
+    renderElement(payTableMain, payTableUI);
+  };
+  buttonMain.appendChild(inputBox);
+  consoleUI.appendChild(buttonMain);
   // plus minus button
-  // confirm button
-  buttonUI.appendChild(infoContainer);
-}
+  const plusMinusContainer = createContainer('plusMinus');
+  const plusButton = createContainer('subButton');
+  plusButton.innerText = '+';
+  const minusButton = createContainer('subButton');
+  minusButton.innerText = '-';
+  plusButton.onclick = (event) => {
+    document.getElementById('inputBox').value = Number(document.getElementById('inputBox').value) + 1;
+    inputBox.onchange();
+  };
 
-function makeUpdatePayTable(payTable, betAmount) {
-  function updatePayTable(event) {
-    const payTableUI = generatePayTable(payTable, betAmount);
-    document.getElementsByClassName("payTableMain").replaceChildren(payTableUI);
-  }
-  return updatePayTable;
+  minusButton.onclick = (event) => {
+    document.getElementById('inputBox').value = Number(document.getElementById('inputBox').value) - 1;
+    inputBox.onchange();
+  };
+  plusMinusContainer.appendChild(plusButton);
+  plusMinusContainer.appendChild(minusButton);
+  buttonMain.appendChild(plusMinusContainer);
+  // confirm button
+  const mainButton = createContainer('button');
+  return consoleUI;
 }
