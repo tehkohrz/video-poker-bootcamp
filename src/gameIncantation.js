@@ -4,42 +4,25 @@ import {
   shuffleCards,
   tallyCombinations,
   checkPayOut,
-} from "./helperFunctions.js";
+} from './helperFunctions.js';
 
-import { payTable, playerData, gamePhase, HAND_SIZE } from "./glolbalParams.js";
+import {
+  payTable, playerData, gamePhase, HAND_SIZE, gameDeck,
+} from './glolbalParams.js';
 
 import {
   createMainUI,
-  createCardElements,
-  renderElement,
-} from "./summoningUI.js";
-let gameDeck = [];
+  updateGameState,
+} from './summoningUI.js';
+import { cardImageSources } from './cardImageSrc.js';
 
 const initGame = () => {
-  document.body.innerHTML = "";
+  document.body.innerHTML = '';
   playerData.phase = gamePhase.BET;
   // create game deck and shuffle cards
-  gameDeck = shuffleCards(makeDeck());
+  playerData.deck = shuffleCards(makeDeck());
   createMainUI(payTable, playerData, HAND_SIZE);
-  const updateHand = createCardElements(playerData.hand);
-  renderElement(document.getElementById("tableMain"), updateHand);
+  const mainButton = document.getElementById('mainButton');
+  mainButton.onclick = updateGameState;
 };
 initGame();
-
-// Functions for the game states
-function betPhaseUpdate(playerBet) {}
-
-// To manage the different stages of the game and implement logic and site display
-export const updateGameState = () => {
-  if (playerData.phase === gamePhase.BET) {
-    playerData.phase = gamePhase.DEAL;
-  }
-  if (playerData.phase === gamePhase.DEAL) {
-    dealCards(gameDeck, playerData.hand, HAND_SIZE);
-    const cardTable = createCardElements(playerData.hand);
-    document.getElementById("tableMain").replaceChildren(cardTable);
-    // insert logic for the the card display function
-  }
-  if (playerData.phase === gamePhase.REPLACE) {
-  }
-};

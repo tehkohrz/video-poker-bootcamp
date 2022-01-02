@@ -1,3 +1,5 @@
+import { playerData } from './glolbalParams';
+
 // Get a random index ranging from 0 (inclusive) to max (exclusive).
 const getRandomIndex = (max) => Math.floor(Math.random() * max);
 
@@ -33,7 +35,7 @@ export const makeDeck = () => {
   // Initialise an empty deck array
   const newDeck = [];
   // Initialise an array of the 4 suits in our deck. We will loop over this array.
-  const suits = ["Hearts", "Diamond", "Clubs", "Spades"];
+  const suits = ['Hearts', 'Diamond', 'Clubs', 'Spades'];
 
   // Loop over the suits array
   for (let suitIndex = 0; suitIndex < suits.length; suitIndex += 1) {
@@ -47,14 +49,14 @@ export const makeDeck = () => {
       let cardName = `${rankCounter}`;
 
       // If rank is 1, 11, 12, or 13, set cardName to the ace or face card's name
-      if (cardName === "1") {
-        cardName = "Ace";
-      } else if (cardName === "11") {
-        cardName = "Jack";
-      } else if (cardName === "12") {
-        cardName = "Queen";
-      } else if (cardName === "13") {
-        cardName = "King";
+      if (cardName === '1') {
+        cardName = 'Ace';
+      } else if (cardName === '11') {
+        cardName = 'Jack';
+      } else if (cardName === '12') {
+        cardName = 'Queen';
+      } else if (cardName === '13') {
+        cardName = 'King';
       }
 
       // Create a new card with the current name, suit, and rank
@@ -80,6 +82,7 @@ export const makeDeck = () => {
 @ param hand {array} containing the cards on the player's hand
 @ param noOfCards {number} number of cards to be dealt out - used this to scale
 for diff sized hands for diff games
+@ returns hand of cards for empty hands
 */
 export const dealCards = (deck, hand, noOfCards = 0) => {
   // deals the set number of cards to an empty hand
@@ -94,8 +97,7 @@ export const dealCards = (deck, hand, noOfCards = 0) => {
   // fills the empty gaps in the hand
 
   for (let i = 0; i < hand.length; i += 1) {
-    if (hand[i].replaceToggle == true) {
-      console.log("card", hand[i]);
+    if (hand[i].replaceToggle === true) {
       hand[i] = null; // i dont know what my console is showing me wtf
       hand[i] = deck.pop();
     }
@@ -128,7 +130,7 @@ const tallyHand = (hand, attribute) => {
 export const tallyCombinations = (hand) => {
   const handCombos = {};
   // tally for card ranks to check for straights
-  const rankTally = tallyHand(hand, "rank");
+  const rankTally = tallyHand(hand, 'rank');
   const rank = [];
 
   for (const key in rankTally) {
@@ -137,7 +139,7 @@ export const tallyCombinations = (hand) => {
   }
   // for ace is rank 1 in royal flush cant compare numerically (1,10,11,12,13,14) so count 4 straigtcounts, there are other ways to do this
   // other combination to note is  1,2,3,4,5
-  if (rank[0] === "1") {
+  if (rank[0] === '1') {
     rank.push(14);
   }
   // Checking for pairs, triples and four of a kind
@@ -160,7 +162,7 @@ export const tallyCombinations = (hand) => {
     }
   }
   // tally for card suits to check for flush
-  const suitTally = tallyHand(hand, "suit");
+  const suitTally = tallyHand(hand, 'suit');
   for (const key in suitTally) {
     if (suitTally[key] == 5) {
       handCombos.flush = true;
@@ -168,7 +170,7 @@ export const tallyCombinations = (hand) => {
   }
   // check for royal flush 1) straights, 2)flush & starts at 10 to Ace but the first card in rank is ace (rank = 1)
   // reset straight and flush checks incase if error pops in payout portion
-  if (handCombos.straights && handCombos.flush && rank[0] === "1") {
+  if (handCombos.straights && handCombos.flush && rank[0] === '1') {
     handCombos.royal = true;
     handCombos.straights = false;
     handCombos.flush = false;
@@ -208,7 +210,7 @@ export function straightsCheck(rank) {
 // @param combination{object} of combinations that the player hand has
 // @return payOutOdds {number} odds to be multipled with the bet amount
 
-export const checkPayOut = (handCombos) => {
+export const checkPayOut = (handCombos, betAmount) => {
   let winningOdds = 0;
   const payTable = {
     royal: 800,
@@ -222,8 +224,18 @@ export const checkPayOut = (handCombos) => {
   };
   for (const key in handCombos) {
     if (handCombos[key]) {
-      winningOdds = payTable[key];
+      winningOdds = payTable[key] * betAmount;
     }
+    else { winningOdds = 0; }
   }
   return winningOdds;
 };
+
+export function resetRound() {
+  playerData.currentBet = 0;
+  playerData.bank += playerData.winAmount;
+  playerData.winAmount = 0;
+  playerData.winningOdds = 0;
+  playerData.hand = undefined;
+  playerData.handCombos = {};
+}

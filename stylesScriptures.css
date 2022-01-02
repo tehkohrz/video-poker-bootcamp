@@ -1,70 +1,106 @@
 * {
   box-sizing: border-box;
   margin: 0;
+  font-family: 'Pushster', cursive;
 }
 .main {
-  background-color: grey;
+  background-color: darkgreen;
+  width: 100%;
+  height: 100%;
 }
 .title {
-  background-color: cornflowerblue;
-  display: flex;
-  justify-content: center;
+  background-color: brown;
   font-size: 60px;
-  flex-wrap: wrap;
+  font-weight: bold;
+  text-align: center;
 }
-/* Game UI, information and next button */
-.row {
-  display: block;
+.payTableMain {
+  background-color: darkgreen;
   width: 100%;
-  background-color: aquamarine;
+  border: 1.5px solid black;
 }
-.splitRow {
+.payTableRows{
+  border: 1.5px solid black;
   display: flex;
-  flex-wrap: wrap;
 }
-
-.gameStateBox {
-  border: 2px solid black;
-  width: 60%;
-}
-.cellName {
-  border: 2px solid blue;
-  min-width: 10%;
+.payTableHeaderCol{
+  color: whitesmoke;
+  width:50%;
   text-align: center;
-  font-weight: bolder;
+  border: 1.5px solid black;
+  
 }
-.numbersInfo {
-  border: 2px solid blue;
-  min-width: 10%;
+.payTableOddsCol{
+  color: whitesmoke ;
   text-align: center;
-}
-#gameToolTip {
-  width: 60%;
-  border: 2px solid black;
-}
-#actionButton {
-  display: inline-block;
-  width: 20%;
-  background-color: lightgrey;
-}
-#betInput {
-  width: 20%;
-}
+  width:50%;
+  border: 1.5px solid black;
 
-/* Card board */
-.board {
+}
+.tableMain{
+  display:flex
+  margin: auto;
+}
+.tableBackground{
   display: flex;
   justify-content: space-evenly;
-  flex-wrap: wrap;
-  background-color: green;
-  min-height: 110px;
   padding-top: 5px;
+  padding-bottom: 5px;
+  flex-wrap: wrap;
 }
-
 .cardShadow {
-  border: 1px solid white;
+  border: 2px solid white;
   border-radius: 5%;
   height: 94px;
   width: 70px;
   margin-bottom: 2px;
+}
+.msgControlMain{
+  width:100%
+}
+.msgMain{
+  background-color: darkolivegreen;
+}
+.controlMain{
+  width:100%
+}
+.consoleMain{
+}
+
+.infoContainer{
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+.bankContainer{
+  width:50%;
+}
+.betContainer {
+  width: 50%;
+}
+.subTitle{
+  border: 1px solid black;
+  font-weight: bold;
+}
+.buttonMain{
+  display:flex;
+}
+.number{
+  border: 1px solid black;
+  color: whitesmoke;
+}
+.plusMinus{
+  display:flex;
+}
+.subButton{
+  background-color: red;
+  border: 1px solid black;
+  text-align: center;
+  font-size: 35px;
+  min-width: 50px;
+}
+.mainButton{
+  background-color: darkgray;
+  text-align: center;
+  width: 100%;
 }
